@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+	.container
+		.row
+
+			.col-md-12
+				dl.dl-horizontal
+					dt 分享标题
+					dd= share.title
+					dt 分享作者
+					dd= share.author
+					dt 文章链接
+					dd: a(href="#{share.link}" target="_blank")= share.link
+					dt 分享日期
+					dd #{moment(share.date).format('YYYY-MM-DD')}
+					dt 分享简介
+					dd= share.summary
