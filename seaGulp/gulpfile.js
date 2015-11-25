@@ -1,26 +1,31 @@
 var gulp = require('gulp'),
+    less = require('gulp-less'),
     concat = require('gulp-concat'),
     minifyCSS = require('gulp-minify-css'),
     concatCss = require('gulp-concat-css'),
     uglify = require('gulp-uglify'),
     seajsCombo = require('gulp-seajs-combo'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    clean = require('gulp-clean');
 
 //逻辑代码打包
 (function () {
     var biz = {
         index: {
             js: 'static/src/biz/index/index.js',
-            css: 'static/src/biz/index/index.css'
+            css: 'static/src/biz/index/index.less'
         },
         home: {
             js: 'static/src/biz/home/home.js',
-            css: 'static/src/biz/home/home.css'
+            css: 'static/src/biz/home/home.less'
         }
 
     };
 
-    var allBizTask = [];
+    var allBizTask = [],
+        allBizCssTask = [],
+        allBizJsTask = [];
+
     var prop = '';
 
     for (prop in biz) {
@@ -48,21 +53,24 @@ var gulp = require('gulp'),
             });
             gulp.task(param + '_css', function() {
                 return gulp.src(biz[param].css)
+                    .pipe(less())
                     .pipe(concatCss(param + '.css'))
                     .pipe(gulp.dest('static/build'))
                     .pipe(rename({ suffix: '.min' }))
                     .pipe(minifyCSS())
-                    .pipe(concat(param + '.css'))
                     .pipe(gulp.dest('static/build'));
             });
             
         })(prop);
         gulp.task(prop, [prop + '_css', prop + '_js']);
+        allBizCssTask.push(prop + '_css');
+        allBizJsTask.push(prop + '_js');
         allBizTask.push(prop);
     }
 
     gulp.task('biz', allBizTask);
-
+    gulp.task('biz_css', allBizCssTask);
+    gulp.task('biz_js', allBizJsTask);
 })();
 
 //公用js和css打包
@@ -105,3 +113,13 @@ var gulp = require('gulp'),
     // The default task (called when you run `gulp` from cli)
     gulp.task('base', ['minify-lib-scripts', 'minify-lib-css']);
 })();
+
+//监听文件变化
+gulp.task('watch_css',function(){
+  // 监听.less文件,一旦有变化,立刻调用build-less任务执行
+  gulp.watch('static/src/biz/*/*.less', ['biz_css']);
+});
+gulp.task('watch_js',function(){
+  gulp.watch('static/src/biz/*/*.js', ['biz_js']);
+});
+gulp.task('watch', ['watch_css', 'watch_js']);
