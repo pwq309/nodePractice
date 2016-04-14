@@ -11,6 +11,7 @@ block content
 						th(width="10%") 文章链接
 						th(width="10%") 分享日期
 						th(width="10%") 创建日期
+						th(width="10%") 平均得分
 						th 操作
 						
 				tbody
@@ -21,9 +22,10 @@ block content
 							td: a(href="#{item.link}" target="_blank") 点我跳转
 							td #{moment(item.date).format('YYYY-MM-DD')}
 							td #{moment(item.meta.updateAt).format('YYYY-MM-DD')}
+							td 3
 							td 
 								a.btn.btn-info(style="margin-right:10px;" target="_blank", href="../share/#{item._id}") 查看
 								a.btn.btn-warning(style="margin-right:10px;" target="_blank", href="../admin/update/#{item._id}") 修改
 								button.btn.btn-danger.del(style="margin-right:10px;" type="button", data-id="#{item._id}") 删除
-								a.btn.btn-success(target="_blank", href="../admin/update/#{item._id}") 投票
+								a.btn.btn-success(target="_blank", href="../vote/#{item._id}") 投票
 							

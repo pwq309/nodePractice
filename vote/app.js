@@ -8,7 +8,9 @@ var port = process.env.PORT || 3123;
 var path = require('path');
 var mongoose = require('mongoose');
 var _ = require('underscore');
-var Share = require('./models/share')
+var Share = require('./models/share');
+var Vote = require('./models/vote');
+
 var app = express();
 
 mongoose.connect('mongodb://localhost/vote');
@@ -23,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'bower')));
 app.locals.moment = require('moment');
 app.listen(port);
 
-console.log('imooc started on port ' + port);
+console.log('vote started on port ' + port);
 	
 //index page
 app.get('/', function(req, res) {
@@ -132,3 +134,28 @@ app.get('/admin/list', function(req, res) {
 	})
 	
 })
+
+
+//vote page
+app.get('/admin/vote/new', function(req, res){
+	var id = req.body.share._id;
+	var shareObj = req.body.share;
+	var _share;
+
+	Share.findById(id, function(err, share) {
+		if(err) {
+			console.log(err);
+		}
+
+		_share = _.extend(share, shareObj);
+		_share.save(function(err, share) {
+			if(err) {
+				console.log(err);
+			}
+
+			res.redirect('/share/' + share._id);
+		})
+	})
+})
+
+
