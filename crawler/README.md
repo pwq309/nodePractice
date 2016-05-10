@@ -6,7 +6,7 @@
 ## 遇到的问题如下：
 * 爬虫返回403，表示网站采用了防爬技术anti-web-crawling technique（Amazon所用），比较简单即会检查用户代理（User Agent）信息。再请求头部构造一个User Agent就行了。构造的url如下。
 
-​``` javascript
+​```javascript
 url: {
     hostname: 'www.mzitu.com',
     port: 80,
