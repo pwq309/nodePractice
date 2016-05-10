@@ -1,9 +1,9 @@
-# 说明
+## 说明
 1. 使用node作为服务器生成JS-SDK权限验证的签名
 2. 菜鸟尝试微信JS-SDK,欢迎批评
 3. git地址：http://git.oschina.net/xinshangshangxin/node_JS-SDK_signature/tree/master/
 
-# 使用说明
+## 使用说明
 1. 下载 或 `git clone` 源码
 2. `npm install` 安装 依赖包
 3. 修改 `config.js`, 填写你的配置

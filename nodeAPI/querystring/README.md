@@ -1,4 +1,4 @@
-querystring
+querystring，提供一些字符串处理，如url编码，序列化成对象。
 API地址详见：http://nodeapi.ucdok.com/#/api/url.html。
 
 ## Query String API

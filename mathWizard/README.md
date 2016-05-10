@@ -4,4 +4,8 @@
 * http://localhost:8124/factorial
 * http://localhost:8124/fibonacci
 
-小注：这是改版，原版没用框架在/origin/下。
+### 亮点
+* 使用ejs模版。
+* express 测验。
+
+__小注__：这是改版，原版没用框架在/origin/下。

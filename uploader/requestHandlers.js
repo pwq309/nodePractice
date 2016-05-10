@@ -99,10 +99,17 @@ function show(response) {
 }
 
 function staticfile(response, request, pathname) {
+
+    //静态资源服务器
+    //fs.readFile(filename,[options],callback);
     //console.log("Request staticfile：" + pathname);
     fs.readFile(__dirname + pathname, 'binary', function(err, file){
         console.log(err);
-        if (err) {
+        if (err && err.code === 'ENOENT') {
+            response.writeHead(404, {'Content-Type': 'text/plain'});
+            response.write(err + "\n");
+            response.end();
+        } else if (err) {
             response.writeHead(500, {'Content-Type': 'text/plain'});
             response.write(err + "\n");
             response.end();

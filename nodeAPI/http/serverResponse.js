@@ -4,6 +4,10 @@
  
 var http = require('http');
  
+// createServer返回了一个http.server对象，拥有listen方法
+// 此req为http.IncommingMessage（实现了 Readable Stream 接口以及其他额外的事件，方法和属性。）的一个实例
+// 此res为http.serverResponse（实现Writable Stream 接口，也是一个包含若干事件的EventEmitter）的一个实例
+
 var server = http.createServer(function(req,res){
  
     /**

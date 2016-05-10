@@ -16,7 +16,7 @@ life.on('sayhello', function(who){
 
 life.on('sayhehe', test);
 
-life.removeListener('sayhehe', test);
+//life.removeListener('sayhehe', test);
 
 //手动触发
 life.emit('sayhello', 'everlose');
