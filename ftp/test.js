@@ -1,9 +1,9 @@
 //github地址：https://github.com/mscdex/node-ftp
 // ftp 文件上传助手
 var conf = {
-    'host': 'v0.ftp.upyun.com',
-    'user': 'bbops2/bbstatic',
-    'password': 'HusorPtd0829'
+    'host': 'test.com',
+    'user': 'tongta',
+    'password': 'tongta'
 };
 
 var Client = require('ftp');
