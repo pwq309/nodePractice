@@ -9,14 +9,13 @@ var conf = {
 var Client = require('ftp');
 var c = new Client();
 
-var filePath = '/Users/Xaber/Desktop/upload_ffc5d2643e8997144aa079eebefa3622_740x390.jpg';
+var filePath = '/upload_ffc5d2643e8997144aa079eebefa3622_740x390.jpg';
 var uploadFileName = 'upload_ffc5d2643e8997144aa079eebefa3622_740x390.jpg';
 var uploadDir = 'party/default/';
 
 c.on('ready', function () {
     c.put(filePath, uploadDir + uploadFileName, function (err) {
         if (err) throw err;
-        console.log('http://b0.hucdn.com/' + uploadDir + uploadFileName);
         c.end();
     });
 });
